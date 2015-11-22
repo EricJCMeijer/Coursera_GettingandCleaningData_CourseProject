@@ -1,5 +1,4 @@
-README
-Coursera_GettingandCleaningData_CourseProject
+GettingandCleaningData_CourseProject
 ===================
 
 ## Source List
