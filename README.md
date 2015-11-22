@@ -8,7 +8,7 @@ GettingandCleaningData_CourseProject
 
 ## Raw data
 
-The raw data come from the "Human Activity Recognition Using Smartphones Data Set" These data can be downloaded through this link: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip.
+The raw data come from the "Human Activity Recognition Using Smartphones Data Set. These data can be downloaded through this link: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip.
 A description of the data project can be found here: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
 ## Instructions for usage

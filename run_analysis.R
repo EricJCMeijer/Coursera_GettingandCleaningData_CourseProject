@@ -1,22 +1,22 @@
-# load library
+# load dplyr library
 library(dplyr)
 
 # load test data in dataframes and adjust column names
-readtestSubjects <- read.table("subject_test.txt")
-testSubjects <- rename(readtestSubjects, subject = V1)
-readtestActivityLabels <- read.table("y_test.txt")
-testActivityLabels <- rename(readtestActivityLabels, activity = V1)
-testData <- read.table("X_test.txt")
+testSubjects <- read.table("UCI HAR Dataset/test/subject_test.txt")
+testSubjects <- rename(testSubjects, subject = V1)
+testActivityLabels <- read.table("UCI HAR Dataset/test/y_test.txt")
+testActivityLabels <- rename(testActivityLabels, activity = V1)
+testData <- read.table("UCI HAR Dataset/test/X_test.txt")
 
 # combine test Subjects and Activity Labels data in one data frame
 testSubActivLabels <- cbind(testSubjects, testActivityLabels)
 
 # load training data in dataframes and adjust column names
-readtrainingSubjects <- read.table("subject_train.txt")
-trainingSubjects <-rename(readtrainingSubjects, subject = V1)
-readtrainingActivityLabels <- read.table("y_train.txt")
-trainingActivityLabels <- rename(readtrainingActivityLabels, activity = V1)
-trainingData <- read.table("X_train.txt")
+trainingSubjects <- read.table("UCI HAR Dataset/train/subject_train.txt")
+trainingSubjects <-rename(trainingSubjects, subject = V1)
+trainingActivityLabels <- read.table("UCI HAR Dataset/train/y_train.txt")
+trainingActivityLabels <- rename(trainingActivityLabels, activity = V1)
+trainingData <- read.table("UCI HAR Dataset/train/X_train.txt")
 
 # combine training Subjects and Activity data in one data frame
 trainingSubActivLabels <- cbind(trainingSubjects, trainingActivityLabels)
@@ -28,7 +28,7 @@ allSubActivLabels <- rbind(testSubActivLabels, trainingSubActivLabels)
 allData <- rbind(testData, trainingData)
 
 # load features file in data frame
-features <- read.table("features.txt")
+features <- read.table("UCI HAR Dataset/features.txt")
 
 # make vector with column names
 colnames <- features[ ,2]
@@ -55,18 +55,19 @@ targetData <- allData[ , indexTargetFeatures]
 richData <- cbind(allSubActivLabels, targetData)
 
 # calculate mean data
-calculated <- aggregate(richData[, 3:68], list(richData$subject, richData$activity), mean)
+aggregatedData <- aggregate(richData[, 3:68], list(richData$subject, richData$activity), mean)
 
 # load activity labels
-activity <- read.table("activity_labels.txt")
+activity <- read.table("UCI HAR Dataset/activity_labels.txt")
 
 # merge activity labels and calculated means
-inclActLabels <- merge(activity, calculated, by.x = "V1", by.y = "Group.2", all = TRUE)
+aggregatedData <- merge(activity, aggregatedData, by.x = "V1", by.y = "Group.2", all = TRUE)
 
 # remove V1 from inclActLabels
-removeV1 <- inclActLabels[ , 2:69]
+aggregatedData <- aggregatedData[ , 2:69]
 
-tidyDataSet <- rename(removeV1, subject = Group.1, activity = V2)
+# rename variables V1 and V2
+tidyDataSet <- rename(aggregatedData, subject = Group.1, activity = V2)
 
 # write txt file of tidyDataSey
 write.table(tidyDataSet, file = "tidy_data_set.txt", row.name=FALSE)

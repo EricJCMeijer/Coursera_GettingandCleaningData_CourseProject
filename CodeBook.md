@@ -1,11 +1,5 @@
-------
-title: "CodeBook Getting and Cleaning Data"
-date: "The date here"
-output: tidy_data_set.txt
-------
-
 ## Project Description
-This project aims to tidy up the data in the "Human Activity Recognition Using Smartphones Data Set". The ultimate aim is to creat a tidy data set describing mean and standard deviation of a large number of observations. A description of the original data project can be found here: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+This project aims to tidy up the data in the "Human Activity Recognition Using Smartphones Data Set". The ultimate aim is to create a tidy data set describing mean and standard deviation of a large number of observations. A description of the original data project can be found here: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
 ##Study design and data processing
 
